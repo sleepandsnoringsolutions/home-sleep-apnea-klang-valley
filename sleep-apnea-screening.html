@@ -1,0 +1,224 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="An educational sleep apnea risk screening based on published STOP-Bang criteria. This is not a diagnosis.">
+  <title>Sleep Apnea Screening | Home Sleep Apnea Testing</title>
+  <style>
+    :root{--navy:#243858;--blue:#315fc5;--teal:#26856f;--green:#77c9a6;--ink:#243858;--muted:#61718b;--line:#d9e4f1;--pale:#f2f9f5;--white:#fff}
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{margin:0;font-family:system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;color:var(--ink);background:var(--pale);line-height:1.55}
+    button,input{font:inherit}
+    a{color:inherit}
+    .wrap{width:min(100% - 36px,1000px);margin:auto}
+    .site-head{background:#fff;border-bottom:1px solid var(--line)}
+    .site-head .wrap{min-height:76px;display:flex;align-items:center;justify-content:space-between;gap:20px}
+    .brand{font-size:1.02rem;font-weight:800;text-decoration:none}
+    .back{font-weight:700;color:var(--blue);text-decoration:none}
+    .back:hover{text-decoration:underline}
+    .intro{padding:66px 0 30px;background:radial-gradient(circle at 85% 0%,#d9f3e6,transparent 34%),linear-gradient(135deg,#eaf3ff,#fff 58%,#edf9f1)}
+    .eyebrow{display:inline-block;margin-bottom:14px;color:var(--blue);font-size:.78rem;font-weight:900;text-transform:uppercase;letter-spacing:.12em}
+    h1{max-width:780px;margin:0 0 16px;font-size:clamp(2.25rem,5vw,4.25rem);line-height:1.08;letter-spacing:-.035em}
+    .intro p{max-width:710px;margin:0 0 20px;color:var(--muted);font-size:1.1rem}
+    .notice{max-width:830px;padding:18px 20px;border:1px solid #bde1d0;border-left:5px solid var(--teal);border-radius:14px;background:#eef9f2;color:#334b5b}
+    .notice strong{color:var(--ink)}
+    main{padding-bottom:78px}
+    .panel{margin:32px auto 0;padding:34px;border:1px solid #d3e9da;border-radius:26px;background:#fff;box-shadow:0 18px 48px rgba(27,56,96,.08)}
+    .progress-top{display:flex;align-items:center;justify-content:space-between;gap:14px;color:var(--muted);font-weight:700;font-size:.91rem}
+    .progress-track{height:9px;margin:12px 0 34px;border-radius:999px;background:#e4efe9;overflow:hidden}
+    .progress-bar{height:100%;width:12.5%;background:linear-gradient(90deg,var(--blue),var(--green));transition:width .25s}
+    fieldset{border:0;padding:0;margin:0;min-width:0}
+    fieldset[hidden],section[hidden]{display:none!important}
+    .letter{display:inline-grid;place-items:center;width:52px;height:52px;margin-bottom:17px;border-radius:15px;background:#edf4ff;color:var(--blue);font-size:1.7rem;font-weight:900}
+    legend{padding:0;font-size:clamp(1.45rem,3vw,2.15rem);font-weight:800;line-height:1.28}
+    .hint{margin:12px 0 22px;color:var(--muted)}
+    .choices{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px;max-width:530px}
+    .choice{position:relative;display:block;cursor:pointer}
+    .choice input{position:absolute;inset:0;width:100%;height:100%;margin:0;opacity:0;cursor:pointer}
+    .choice span{display:flex;align-items:center;gap:12px;padding:16px 18px;border:2px solid var(--line);border-radius:14px;background:#fff;font-weight:800;transition:border-color .18s,background .18s,box-shadow .18s}
+    .choice span:before{content:"";width:19px;height:19px;border:2px solid #a6b5c9;border-radius:50%;flex:0 0 auto}
+    .choice input:checked + span{border-color:var(--blue);background:#edf9f2;box-shadow:0 0 0 2px rgba(38,133,111,.12)}
+    .choice input:checked + span:before{border-color:var(--blue);background:var(--blue);box-shadow:inset 0 0 0 4px #fff}
+    .choice input:focus-visible + span{outline:3px solid var(--teal);outline-offset:3px}
+    .bmi-tool{max-width:630px;margin:26px 0 0;padding:20px;border:1px solid var(--line);border-radius:16px;background:#f4fbf6}
+    .bmi-tool h3{margin:0 0 5px;font-size:1rem}
+    .bmi-tool p{margin:0 0 15px;color:var(--muted);font-size:.9rem}
+    .bmi-fields{display:flex;gap:12px;flex-wrap:wrap}
+    .bmi-fields label{flex:1 1 150px;font-size:.85rem;font-weight:750}
+    .bmi-fields input{width:100%;margin-top:5px;padding:10px 12px;border:1px solid #b9c9db;border-radius:9px;background:#fff;color:var(--ink)}
+    .bmi-readout{min-height:1.5em;margin-top:11px!important;font-weight:750}
+    .validation{min-height:1.4em;margin:16px 0 0;color:#a12d2d;font-weight:750}
+    .controls{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-top:27px}
+    .btn{border:0;border-radius:12px;padding:13px 22px;font-weight:800;cursor:pointer;text-decoration:none;text-align:center}
+    .btn-primary{background:linear-gradient(110deg,var(--blue),#276d9b);color:#fff}
+    .btn-primary:hover{background:#3156b4}
+    .btn-secondary{background:#e9f0fa;color:var(--ink)}
+    .btn-secondary:hover{background:#dce8f7}
+    .btn:focus-visible,.back:focus-visible{outline:3px solid var(--teal);outline-offset:3px}
+    #back-button[hidden]{visibility:hidden;display:block!important}
+    .result{text-align:center}
+    .score{display:inline-grid;place-items:center;width:128px;height:128px;margin:7px auto 20px;border-radius:50%;border:7px solid var(--blue);background:#eef8f2;color:var(--blue);font-size:3rem;font-weight:900}
+    .result h2{margin:0 0 10px;font-size:clamp(1.7rem,3vw,2.35rem)}
+    .result p{max-width:670px;margin:0 auto 16px;color:var(--muted)}
+    .result .notice{text-align:left;margin:24px auto}
+    .result-actions{display:flex;justify-content:center;gap:12px;flex-wrap:wrap;margin-top:22px}
+    .about{max-width:800px;margin:30px auto 0;color:var(--muted);font-size:.9rem}
+    .about a{color:var(--blue)}
+    @media(max-width:600px){.wrap{width:min(100% - 28px,1000px)}.site-head .wrap{min-height:70px}.brand{max-width:190px}.intro{padding-top:46px}.panel{padding:24px 19px;border-radius:20px}.choices{gap:9px}.choice span{padding:14px 12px}.controls .btn{padding:12px 16px}}
+    @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{transition:none!important}}
+  </style>
+</head>
+<body>
+  <header class="site-head"><div class="wrap">
+    <a class="brand" href="index.html">Home Sleep Apnea Testing</a>
+    <a class="back" href="index.html">← Back to main site</a>
+  </div></header>
+  <main>
+    <div class="intro"><div class="wrap">
+      <div class="eyebrow">Sleep screening</div>
+      <h1>Check your sleep apnea risk</h1>
+      <p>Answer eight short questions based on published STOP-Bang screening criteria. Your score appears at the end.</p>
+      <div class="notice"><strong>Screening disclaimer:</strong> This questionnaire estimates risk of obstructive sleep apnea; it cannot diagnose or rule it out. A low score does not mean symptoms should be ignored. Discuss concerns or results with a qualified healthcare professional. Your answers stay on this page and are not sent to us.</div>
+    </div></div>
+    <div class="wrap">
+      <section class="panel" id="quiz" aria-label="Sleep apnea screening questions">
+        <div class="progress-top"><span id="progress-label">Question 1 of 8</span><span id="progress-percent">13% complete</span></div>
+        <div class="progress-track" role="progressbar" aria-label="Question progress" aria-valuemin="0" aria-valuemax="8" aria-valuenow="1" id="progress-track"><div class="progress-bar" id="progress-bar"></div></div>
+        <form id="screening-form" novalidate>
+          <fieldset class="question" data-letter="S">
+            <legend><span class="letter" aria-hidden="true">S</span>Do you snore loudly?</legend>
+            <p class="hint">For example, can someone hear you through a closed door?</p>
+            <div class="choices"><label class="choice"><input type="radio" name="snoring" value="yes"><span>Yes</span></label><label class="choice"><input type="radio" name="snoring" value="no"><span>No</span></label></div>
+          </fieldset>
+          <fieldset class="question" data-letter="T" hidden>
+            <legend><span class="letter" aria-hidden="true">T</span>Do you often feel tired or sleepy during the day?</legend>
+            <p class="hint">Think about how you usually feel, even after a night's sleep.</p>
+            <div class="choices"><label class="choice"><input type="radio" name="tired" value="yes"><span>Yes</span></label><label class="choice"><input type="radio" name="tired" value="no"><span>No</span></label></div>
+          </fieldset>
+          <fieldset class="question" data-letter="O" hidden>
+            <legend><span class="letter" aria-hidden="true">O</span>Has anyone noticed a pause in your breathing while you sleep?</legend>
+            <p class="hint">This also includes someone noticing choking or gasping.</p>
+            <div class="choices"><label class="choice"><input type="radio" name="observed" value="yes"><span>Yes</span></label><label class="choice"><input type="radio" name="observed" value="no"><span>No</span></label></div>
+          </fieldset>
+          <fieldset class="question" data-letter="P" hidden>
+            <legend><span class="letter" aria-hidden="true">P</span>Do you have high blood pressure or take treatment for it?</legend>
+            <p class="hint">Choose Yes if either applies.</p>
+            <div class="choices"><label class="choice"><input type="radio" name="pressure" value="yes"><span>Yes</span></label><label class="choice"><input type="radio" name="pressure" value="no"><span>No</span></label></div>
+          </fieldset>
+          <fieldset class="question" data-letter="B" hidden>
+            <legend><span class="letter" aria-hidden="true">B</span>Is your body mass index (BMI) greater than 35 kg/m²?</legend>
+            <p class="hint">You can estimate BMI below if you do not know it.</p>
+            <div class="choices"><label class="choice"><input type="radio" name="bmi" value="yes"><span>Yes</span></label><label class="choice"><input type="radio" name="bmi" value="no"><span>No</span></label></div>
+            <div class="bmi-tool"><h3>Optional BMI calculator</h3><p>Enter your height and weight. The answer above will be selected automatically.</p>
+              <div class="bmi-fields"><label>Height (cm)<input id="height" type="number" min="1" step="any" inputmode="decimal" autocomplete="off"></label><label>Weight (kg)<input id="weight" type="number" min="1" step="any" inputmode="decimal" autocomplete="off"></label></div>
+              <p class="bmi-readout" id="bmi-readout" aria-live="polite"></p>
+            </div>
+          </fieldset>
+          <fieldset class="question" data-letter="A" hidden>
+            <legend><span class="letter" aria-hidden="true">A</span>Are you older than 50 years?</legend>
+            <p class="hint">Select Yes if you are 51 or older.</p>
+            <div class="choices"><label class="choice"><input type="radio" name="age" value="yes"><span>Yes</span></label><label class="choice"><input type="radio" name="age" value="no"><span>No</span></label></div>
+          </fieldset>
+          <fieldset class="question" data-letter="N" hidden>
+            <legend><span class="letter" aria-hidden="true">N</span>Is your neck circumference at least 40 cm (about 16 inches)?</legend>
+            <p class="hint">Measure around the neck near the Adam's apple.</p>
+            <div class="choices"><label class="choice"><input type="radio" name="neck" value="yes"><span>Yes</span></label><label class="choice"><input type="radio" name="neck" value="no"><span>No</span></label></div>
+          </fieldset>
+          <fieldset class="question" data-letter="G" hidden>
+            <legend><span class="letter" aria-hidden="true">G</span>Is your sex male for this screening measure?</legend>
+            <p class="hint">This item follows the sex category used in the published scoring criteria.</p>
+            <div class="choices"><label class="choice"><input type="radio" name="male" value="yes"><span>Yes</span></label><label class="choice"><input type="radio" name="male" value="no"><span>No</span></label></div>
+          </fieldset>
+          <p class="validation" id="validation" role="alert" aria-live="assertive"></p>
+          <div class="controls"><button class="btn btn-secondary" type="button" id="back-button" hidden>Previous</button><button class="btn btn-primary" type="submit" id="next-button">Next question →</button></div>
+        </form>
+      </section>
+      <section class="panel result" id="result" aria-labelledby="result-title" hidden tabindex="-1">
+        <div class="eyebrow">Your screening result</div>
+        <div class="score" id="score-value" aria-label="Score out of eight"></div>
+        <h2 id="result-title"></h2>
+        <p id="result-explanation"></p>
+        <div class="notice"><strong>What this means:</strong> This score is only a screening estimate. It is not a diagnosis, and it cannot replace a sleep study or advice from a qualified healthcare professional. If you have symptoms or concerns, ask a professional about an appropriate assessment.</div>
+        <div class="result-actions"><button class="btn btn-secondary" type="button" id="restart-button">Start again</button><a class="btn btn-primary" href="index.html">Return to main site</a></div>
+      </section>
+      <p class="about">This independent educational page uses published STOP-Bang scoring criteria. The STOP-Bang questionnaire is owned by Dr. Frances Chung and University Health Network. See the <a href="https://sleepeducation.org/wp-content/uploads/2023/01/Stop-Bang-Questionnaire.pdf" target="_blank" rel="noopener noreferrer">published scoring and ownership notice</a>. A licence may be required for clinical or commercial use.</p>
+    </div>
+  </main>
+  <script>
+    (() => {
+      const names=['snoring','tired','observed','pressure','bmi','age','neck','male'];
+      const form=document.getElementById('screening-form');
+      const steps=[...form.querySelectorAll('.question')];
+      const quiz=document.getElementById('quiz');
+      const result=document.getElementById('result');
+      const back=document.getElementById('back-button');
+      const next=document.getElementById('next-button');
+      const validation=document.getElementById('validation');
+      let current=0;
+
+      function showStep(index){
+        current=index;
+        steps.forEach((step,i)=>{step.hidden=i!==index});
+        const position=index+1;
+        document.getElementById('progress-label').textContent=`Question ${position} of ${steps.length}`;
+        document.getElementById('progress-percent').textContent=`${Math.round(position/steps.length*100)}% complete`;
+        document.getElementById('progress-track').setAttribute('aria-valuenow',String(position));
+        document.getElementById('progress-bar').style.width=`${position/steps.length*100}%`;
+        back.hidden=index===0;
+        next.textContent=index===steps.length-1?'See my score':'Next question →';
+        validation.textContent='';
+        if(index>0)steps[index].querySelector('legend').scrollIntoView({block:'nearest'});
+      }
+
+      function calculateBMI(){
+        const height=Number(document.getElementById('height').value);
+        const weight=Number(document.getElementById('weight').value);
+        const output=document.getElementById('bmi-readout');
+        if(!height||!weight||!Number.isFinite(height)||!Number.isFinite(weight)||height<=0||weight<=0){output.textContent='';return}
+        const bmi=weight/((height/100)**2);
+        output.textContent=`Estimated BMI: ${bmi.toFixed(2)} kg/m² — ${bmi>35?'above':'not above'} 35`;
+        const choice=form.querySelector(`input[name="bmi"][value="${bmi>35?'yes':'no'}"]`);
+        choice.checked=true;
+        validation.textContent='';
+      }
+      document.getElementById('height').addEventListener('input',calculateBMI);
+      document.getElementById('weight').addEventListener('input',calculateBMI);
+      form.addEventListener('change',()=>{validation.textContent=''});
+      back.addEventListener('click',()=>{if(current>0)showStep(current-1)});
+
+      function scoreAnswers(yes){
+        const score=Object.values(yes).filter(Boolean).length;
+        const stop=['snoring','tired','observed','pressure'].filter(name=>yes[name]).length;
+        const higher=score>=5 || (score>=3 && stop>=2 && (yes.male||yes.bmi||yes.neck));
+        return {score,group:higher?'Higher':score>=3?'Intermediate':'Lower'};
+      }
+
+      form.addEventListener('submit',event=>{
+        event.preventDefault();
+        const selected=form.querySelector(`input[name="${names[current]}"]:checked`);
+        if(!selected){validation.textContent='Please choose Yes or No to continue.';steps[current].querySelector('input[type="radio"]').focus();return}
+        if(current<steps.length-1){showStep(current+1);return}
+        const yes=Object.fromEntries(names.map(name=>[name,form.querySelector(`input[name="${name}"]:checked`)?.value==='yes']));
+        const {score,group}=scoreAnswers(yes);
+        const higher=group==='Higher';
+        document.getElementById('score-value').textContent=`${score}/8`;
+        document.getElementById('result-title').textContent=`${group} screening risk`;
+        document.getElementById('result-explanation').textContent=higher
+          ?'Your answers meet the published criteria for the higher screening group. Please discuss your result with a qualified healthcare professional.'
+          :score>=3
+            ?'Your answers fall in the intermediate screening group. A healthcare professional can help decide whether testing is appropriate.'
+            :'Your answers fall in the lower screening group. This does not rule out sleep apnea, especially if you have symptoms.';
+        quiz.hidden=true;result.hidden=false;result.focus();result.scrollIntoView({block:'start'});
+      });
+
+      document.getElementById('restart-button').addEventListener('click',()=>{
+        form.reset();document.getElementById('height').value='';document.getElementById('weight').value='';document.getElementById('bmi-readout').textContent='';
+        result.hidden=true;quiz.hidden=false;showStep(0);quiz.scrollIntoView({block:'start'});
+      });
+      showStep(0);
+    })();
+  </script>
+</body>
+</html>
