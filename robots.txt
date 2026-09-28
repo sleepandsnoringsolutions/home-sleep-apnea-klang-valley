@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://sleepandsnoringsolutions.github.io/home-sleep-apnea-klang-valley/sitemap.xml
